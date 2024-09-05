@@ -1,7 +1,13 @@
 <template>
-  <h1 class="hs-text-3xl hs-font-bold hs-underline">Hello world!</h1>
+  <uploadimage v-if="!appStore.isImageUploaded" />
+  <imageeditor v-else />
 </template>
 
-<script setup lang="ts"></script>
 
-<style></style>
+<script setup lang="ts">
+import { useAppStore } from "./stores/appStore.ts";  // Adjust the path as necessary
+import Uploadimage from './components/uploadimage.vue';
+import Imageeditor from './components/imageeditor.vue';  // Adjust the path as necessary
+
+const appStore = useAppStore();
+</script>
