@@ -727,6 +727,11 @@ core-js@3.29.1:
   resolved "https://registry.npmjs.org/core-js/-/core-js-3.29.1.tgz"
   integrity sha512-+jwgnhg6cQxKYIIjGtAHq2nwUOolo9eoFZ4sHfUH09BLXBgxnH4gA0zEd+t+BO2cNB8idaBtZFcFTRjQJRJmAw==
 
+core-js@^3.6.5:
+  version "3.38.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.38.1.tgz#aa375b79a286a670388a1a363363d53677c0383e"
+  integrity sha512-OP35aUorbU3Zvlx7pjsFdu1rGNnD4pgw/CWoYzRY3t2EzoVT7shKHY1dlAy3f41cGIO7ZDPQimhGFTlEYkG/Hw==
+
 cross-spawn@^7.0.0:
   version "7.0.3"
   resolved "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz"
@@ -1531,10 +1536,12 @@ vscode-uri@^3.0.8:
   resolved "https://registry.npmjs.org/vscode-uri/-/vscode-uri-3.0.8.tgz"
   integrity sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==
 
-vue-3-slider-component@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/vue-3-slider-component/-/vue-3-slider-component-1.0.1.tgz#b755a272b131025518dfab26e70071338cd30187"
-  integrity sha512-00ekFqXuOJQXrIw1gWgsZzKHKgwR9yUMD99Pvc/01ILzpzFmR/LbE7VoeT9N6N9OrMm6//lfpgB4nt0P8WzaXA==
+vue-3-slider-component@^0.1.4:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/vue-3-slider-component/-/vue-3-slider-component-0.1.5.tgz#dacbc078b242b15472ccf5d679c749e735ec52a5"
+  integrity sha512-R7yMtORkN+Jaa1t9Porkgw2N4YHfPzGrkXbV+SpuYSr0bBv9j7z4Yd0TfA7ABxZnxQe9Hr8VfM5Gs2Kxs07BNw==
+  dependencies:
+    core-js "^3.6.5"
 
 vue-demi@^0.14.10:
   version "0.14.10"

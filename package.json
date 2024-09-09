@@ -13,7 +13,7 @@
     "@tensorflow/tfjs": "^4.21.0",
     "pinia": "^2.2.2",
     "vue": "^3.4.37",
-    "vue-3-slider-component": "^1.0.1",
+    "vue-3-slider-component": "^0.1.4",
     "vue-navigation-bar": "^6.1.0"
   },
   "devDependencies": {
