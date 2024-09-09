@@ -1,31 +1,17 @@
-<script setup lang="ts">
-import { ref } from 'vue';
-import { useAppStore } from '../stores/appStore';
-import Buttonbackground from './buttonbackground.vue';
-import Buttonborder from './buttonborder.vue';
-import Buttonposition from './buttonposition.vue';
-import Buttontext from './buttontext.vue';
-
-const appStore = useAppStore();
-const activeComponent = ref<string | null>(null);
-
-function toggleComponent(component: string) {
-  if (activeComponent.value === component) {
-    activeComponent.value = null; // Deselect if the same button is clicked
-  } else {
-    activeComponent.value = component; // Select the new component
-  }
-}
-
-function resetAll() {
-  activeComponent.value = null;
-  appStore.reset();
-}
-</script>
-
 <template>
 <div class="flex flex-col lg:flex-row items-stretch justify-center p-6 bg-gray-50 rounded-lg shadow-md mx-10">
   <!-- Left Section (Image Placeholder) -->
+  <div class="relative w-full h-full z-10 rounded-full" style="opacity: 1; transform: rotate(45deg);">
+    <svg id="svgBorder" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="MyGradient">
+          <stop offset="0%" stop-color="#f5f5f5"></stop>
+          <stop offset="100%" stop-color="#c1c1c1"></stop>
+        </linearGradient>
+      </defs>
+      <path :d="computedD" fill="url(#MyGradient)" stroke="none"></path>
+    </svg>
+  </div>
   <div class="w-full lg:w-1/2 flex flex-col items-center justify-center bg-white rounded-lg shadow-lg p-4">
   <!-- Circular Border -->
   <div class="w-48 h-48 flex items-center justify-center rounded-full bg-gradient-to-tr from-pink-500 to-orange-500">
@@ -67,3 +53,37 @@ function resetAll() {
 </div>
 
 </template>
+
+<script setup lang="ts">
+import {computed, ref} from 'vue';
+import { useAppStore } from '../stores/appStore';
+import Buttonbackground from './buttonbackground.vue';
+import Buttonborder from './buttonborder.vue';
+import Buttonposition from './buttonposition.vue';
+import Buttontext from './buttontext.vue';
+
+const appStore = useAppStore();
+const activeComponent = ref<string | null>(null);
+
+function toggleComponent(component: string) {
+  if (activeComponent.value === component) {
+    activeComponent.value = null; // Deselect if the same button is clicked
+  } else {
+    activeComponent.value = component; // Select the new component
+  }
+}
+
+function resetAll() {
+  activeComponent.value = null;
+  appStore.reset();
+}
+
+
+const computedD = computed(() => {
+  const outerRadius = 50;  // Outer radius should be fixed to cover the entire SVG viewbox
+  const maxThickness = 50;
+  const innerRadius = outerRadius - (appStore.$state.thickness * (outerRadius / maxThickness));  // Reverse the thickness logic
+
+  return `M50 50m-${outerRadius},0a${outerRadius},${outerRadius} 0 1,0 ${outerRadius * 2},0a ${outerRadius},${outerRadius} 0 1,0 -${outerRadius * 2},0zM50 50m-${innerRadius},0a${innerRadius},${innerRadius} 0 0,1 ${innerRadius * 2},0a ${innerRadius},${innerRadius} 0 0,1 -${innerRadius * 2},0z`;
+});
+</script>

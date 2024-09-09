@@ -8,6 +8,7 @@ export const useAppStore = defineStore({
     loading: false,  // Tracks the loading state of image processing
     selectedFile: null as File | null,  // Tracks the selected file after upload
     processedImageUrl: null as string | null,  // URL for the image with the background removed
+    thickness: 3
   }),
   getters: {
     isImageUploaded: (state) => !!state.selectedFile,
