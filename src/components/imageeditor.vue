@@ -1,13 +1,24 @@
 <script setup lang="ts">
-import { useAppStore } from "../stores/appStore";
-import Buttonbackground from "./buttonbackground.vue";
-import Buttonborder from "./buttonborder.vue";
-import Buttonposition from "./buttonposition.vue";
-import Buttontext from "./buttontext.vue";
+import { ref } from 'vue';
+import { useAppStore } from '../stores/appStore';
+import Buttonbackground from './buttonbackground.vue';
+import Buttonborder from './buttonborder.vue';
+import Buttonposition from './buttonposition.vue';
+import Buttontext from './buttontext.vue';
 
 const appStore = useAppStore();
+const activeComponent = ref<string | null>(null);
 
-function resetAll(){
+function toggleComponent(component: string) {
+  if (activeComponent.value === component) {
+    activeComponent.value = null; // Deselect if the same button is clicked
+  } else {
+    activeComponent.value = component; // Select the new component
+  }
+}
+
+function resetAll() {
+  activeComponent.value = null;
   appStore.reset();
 }
 </script>
@@ -39,30 +50,19 @@ function resetAll(){
   <!-- Right Section (Options) -->
   <div class="w-full lg:w-1/2 mt-6 lg:mt-0 lg:ml-6 flex flex-col bg-white rounded-lg shadow-lg p-4">
     <div class="flex space-x-4 bg-gray-200 rounded-lg">
-      <Buttonborder />
-      <Buttonposition />
-      <Buttontext />
-      <Buttonbackground />
+      <button @click="toggleComponent('border')" class="py-2 px-4 rounded-lg text-sm font-medium bg-gray-200 text-gray-700">Border</button>
+    <button @click="toggleComponent('background')" class="py-2 px-4 rounded-lg text-sm font-medium bg-gray-200 text-gray-700">Background</button>
+    <button @click="toggleComponent('position')" class="py-2 px-4 rounded-lg text-sm font-medium bg-gray-200 text-gray-700">Position</button>
+    <button @click="toggleComponent('text')" class="py-2 px-4 rounded-lg text-sm font-medium bg-gray-200 text-gray-700">Text</button>
+
+   
+
     </div>
-    <div class="mt-4 flex bg-gray-100 p-3 rounded-lg">
-      <label class="block text-sm font-medium text-gray-700 ">Background color:</label>
-      <input type="color" class=" h-7 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 ml-4" />
-    </div>
-    <div class="mt-4 grid grid-cols-4 gap-4">
-      <!-- Placeholder for patterns -->
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-      <div class="w-20 h-20 rounded-full bg-gray-300"></div>
-    </div>
+    <Buttonborder v-if="activeComponent === 'border'" class="mt-4" />
+    <Buttonbackground v-if="activeComponent === 'background'" class="mt-4" />
+    <Buttonposition v-if="activeComponent === 'position'" class="mt-4" />
+    <Buttontext v-if="activeComponent === 'text'" class="mt-4" />
+
   </div>
 </div>
 

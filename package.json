@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tensorflow-models/body-pix": "^2.2.1",
+    "@tensorflow/tfjs": "^4.21.0",
     "pinia": "^2.2.2",
     "vue": "^3.4.37",
     "vue-3-slider-component": "^1.0.1",
