@@ -8,7 +8,22 @@ export const useAppStore = defineStore({
     loading: false,  // Tracks the loading state of image processing
     selectedFile: null as File | null,  // Tracks the selected file after upload
     processedImageUrl: null as string | null,  // URL for the image with the background removed
-    thickness: 3
+    thickness: 3,
+    offset: 1,
+    zoom: 100,
+    offsetLeft : 0,
+    rotation:0,
+    offsetTop: 0,
+    opacity: 1,
+    text: '',
+    textOffset: 0,
+    textRotation: 0,
+    fontSize: 16,
+    letterSpacing: 1,
+    textColor: '#000000',
+    startColor: '#FF0000',
+     endColor: '#0000FF'
+    
   }),
   getters: {
     isImageUploaded: (state) => !!state.selectedFile,
@@ -30,6 +45,16 @@ export const useAppStore = defineStore({
       this.loading = false;
       this.selectedFile = null;
       this.processedImageUrl = null;  // Reset processedImageUrl
+      this.zoom = 100;
+      this.offsetTop = 0;
+      this.offsetLeft = 0;
+      this.rotation = 0;
+      this.text = '';
+      this.textOffset = 0;
+      this.textRotation = 0;
+      this.fontSize = 16;
+      this.letterSpacing = 1;
+      this.textColor = '#000000';
     },
     async removeBackground() {
       if (!this.selectedFile) return;
