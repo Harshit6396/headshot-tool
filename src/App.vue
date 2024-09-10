@@ -1,6 +1,8 @@
 <template>
   <uploadimage v-if="!appStore.isImageUploaded" />
+  
   <imageeditor v-else />
+  
 </template>
 
 
