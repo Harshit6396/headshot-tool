@@ -8,7 +8,7 @@ export const useAppStore = defineStore({
     loading: false,  // Tracks the loading state of image processing
     selectedFile: null as File | null,  // Tracks the selected file after upload
     processedImageUrl: null as string | null,  // URL for the image with the background removed
-    thickness: 3,
+    thickness: 1,
     offset: 1,
     zoom: 100,
     offsetLeft : 0,
@@ -21,8 +21,8 @@ export const useAppStore = defineStore({
     fontSize: 16,
     letterSpacing: 1,
     textColor: '#000000',
-    startColor: '#FF0000',
-     endColor: '#0000FF'
+    startColor: '#000',
+     endColor: '#000'
     
   }),
   getters: {
@@ -55,6 +55,7 @@ export const useAppStore = defineStore({
       this.fontSize = 16;
       this.letterSpacing = 1;
       this.textColor = '#000000';
+      this.opacity = 0;
     },
     async removeBackground() {
       if (!this.selectedFile) return;
